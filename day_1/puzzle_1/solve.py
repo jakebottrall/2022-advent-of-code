@@ -8,7 +8,7 @@ def get_file_path():
 
 
 def calculate_total(elf):
-    return sum(map(int, elf.split("\n")))
+    return sum(map(int, elf.splitlines()))
 
 
 def main():
