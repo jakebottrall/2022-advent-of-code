@@ -7,7 +7,7 @@ def get_file_path():
     return os.path.join(directory, "input.txt")
 
 
-def calculate_total(elf):
+def calculate_total(elf: str):
     return sum(map(int, elf.splitlines()))
 
 
