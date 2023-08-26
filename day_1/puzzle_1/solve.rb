@@ -7,7 +7,7 @@ File.open(file_path, 'r') do |file|
   elves = file.read.split("\n\n")
 
   calories = elves
-             .map { |elf| elf.split("\n").inject(0) { |sum, cal| sum + cal.to_i } }
+             .map { |elf| elf.split("\n").sum(&:to_i) }
              .min { |a, b| b - a }
 
   puts("Answer: #{calories}")
