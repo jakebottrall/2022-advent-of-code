@@ -17,32 +17,28 @@ const playMap: Map<PlayKey, Play> = new Map([
   ["Z", { choice: "scissors", beats: "paper", score: 3 }],
 ]);
 
-fs.readFile(filePath, { encoding: "utf-8" }, (err, data) => {
-  if (err) {
-    throw err;
+const file = fs.readFileSync(filePath, { encoding: "utf-8" });
+
+const games = file.split("\n");
+
+const score = games.reduce((sum, game) => {
+  const opponentPlay = playMap.get(game.at(0) as PlayKey);
+  const myPlay = playMap.get(game.at(-1) as PlayKey);
+
+  if (!opponentPlay || !myPlay) {
+    throw new Error("🤔");
   }
 
-  const games = data.split("\n");
+  sum += myPlay.score;
 
-  const score = games.reduce((sum, game) => {
-    const opponentPlay = playMap.get(game.at(0) as PlayKey);
-    const myPlay = playMap.get(game.at(-1) as PlayKey);
+  if (myPlay.choice === opponentPlay.choice) {
+    sum += 3;
+  } else if (myPlay.beats === opponentPlay.choice) {
+    sum += 6;
+  }
 
-    if (!opponentPlay || !myPlay) {
-      throw new Error("🤔");
-    }
+  return sum;
+}, 0);
 
-    sum += myPlay.score;
-
-    if (myPlay.choice === opponentPlay.choice) {
-      sum += 3;
-    } else if (myPlay.beats === opponentPlay.choice) {
-      sum += 6;
-    }
-
-    return sum;
-  }, 0);
-
-  console.log(`Answer: ${score}`);
-  console.log(`Solved in: ${performance.now() - startAt}ms`);
-});
+console.log(`Answer: ${score}`);
+console.log(`Solved in: ${performance.now() - startAt}ms`);
