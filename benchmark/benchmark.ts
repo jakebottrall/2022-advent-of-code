@@ -12,7 +12,7 @@ export function benchmark(callback: () => number) {
     runTimes.push(endAt - startAt);
   }
 
-  runTimes.sort((a, b) => a - b);
+  runTimes.sort();
 
   const total = runTimes.reduce((sum, time) => sum + time, 0);
   const average = total / ITERATIONS;
