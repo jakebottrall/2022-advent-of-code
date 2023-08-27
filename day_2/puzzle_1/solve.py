@@ -30,14 +30,14 @@ play_dict: Dict[PlayKey, Play] = {
 
 
 def assess_game(sum: int, game: str):
-    oppenent_play = play_dict[game[0]]
+    opponent_score = play_dict[game[0]]
     my_play = play_dict[game[-1]]
 
     sum += my_play.score
 
-    if my_play.choice == oppenent_play.choice:
+    if my_play.choice == opponent_score.choice:
         sum += 3
-    elif my_play.beats == oppenent_play.choice:
+    elif my_play.beats == opponent_score.choice:
         sum += 6
 
     return sum
