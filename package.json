@@ -4,6 +4,9 @@
   "keywords": [],
   "author": "Jake Bottrall",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "@types/node": "^20.5.6",
     "ts-node": "^10.9.1",
