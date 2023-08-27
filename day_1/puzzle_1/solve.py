@@ -20,8 +20,10 @@ def main():
         calories = [calculate_total(elf) for elf in elves]
         sorted_calories = sorted(calories, reverse=True)
 
+        end_at = time.time()
+
         print(f"Answer: {sorted_calories[0]}")
-        print(f"Solved in: {(time.time() - start_at) * 1000}ms")
+        print(f"Solved in: {(end_at - start_at) * 1000}ms")
 
 
 if __name__ == "__main__":

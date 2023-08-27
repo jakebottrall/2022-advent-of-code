@@ -10,7 +10,10 @@ const elves = file.split("\n\n");
 
 const calories = elves
   .map((elf) => elf.split("\n").reduce((sum, cal) => (sum += +cal), 0))
-  .sort((a, b) => b - a);
+  .sort((a, b) => b - a)
+  .at(0);
 
-console.log(`Answer: ${calories.at(0)}`);
-console.log(`Solved in: ${performance.now() - startAt}ms`);
+const endAt = performance.now();
+
+console.log(`Answer: ${calories}`);
+console.log(`Solved in: ${endAt - startAt}ms`);

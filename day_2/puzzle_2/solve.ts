@@ -43,5 +43,7 @@ const score = games.reduce((sum, game) => {
   return sum;
 }, 0);
 
+const endAt = performance.now();
+
 console.log(`Answer: ${score}`);
-console.log(`Solved in: ${performance.now() - startAt}ms`);
+console.log(`Solved in: ${endAt - startAt}ms`);

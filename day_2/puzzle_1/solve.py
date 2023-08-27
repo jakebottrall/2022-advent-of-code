@@ -52,8 +52,10 @@ def main():
 
         score = reduce(assess_game, games, 0)
 
+        end_at = time.time()
+
         print(f"Answer: {score}")
-        print(f"Solved in: {(time.time() - start_at) * 1000}ms")
+        print(f"Solved in: {(end_at - start_at) * 1000}ms")
 
 
 if __name__ == "__main__":

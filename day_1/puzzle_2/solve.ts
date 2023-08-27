@@ -14,5 +14,7 @@ const calories = elves
   .slice(0, 3)
   .reduce((sum, cal) => (sum += cal), 0);
 
+const endAt = performance.now();
+
 console.log(`Answer: ${calories}`);
-console.log(`Solved in: ${performance.now() - startAt}ms`);
+console.log(`Solved in: ${endAt - startAt}ms`);

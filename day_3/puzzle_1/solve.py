@@ -36,8 +36,10 @@ def main():
 
         priority = reduce(assess_ruck_sack, ruck_sacks, 0)
 
+        end_at = time.time()
+
         print(f"Answer: {priority}")
-        print(f"Solved in: {(time.time() - start_at) * 1000}ms")
+        print(f"Solved in: {(end_at - start_at) * 1000}ms")
 
 
 if __name__ == "__main__":

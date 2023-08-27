@@ -31,6 +31,8 @@ File.open(file_path, 'r') do |file|
     sum
   end
 
+  end_at = Time.now
+
   puts("Answer: #{score}")
-  puts("Solved in: #{(Time.now - start_at) * 1000}ms")
+  puts("Solved in: #{(end_at - start_at) * 1000}ms")
 end

@@ -22,8 +22,10 @@ def main():
         top_three = sorted_calories[:3]
         top_three_total = sum(top_three)
 
+        end_at = time.time()
+
         print(f"Answer: {top_three_total}")
-        print(f"Solved in: {(time.time() - start_at) * 1000}ms")
+        print(f"Solved in: {(end_at - start_at) * 1000}ms")
 
 
 if __name__ == "__main__":

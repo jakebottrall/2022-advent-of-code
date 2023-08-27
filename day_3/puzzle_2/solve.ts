@@ -32,5 +32,7 @@ const priority = ruckSackGroups.reduce((sum, group) => {
   return sum;
 }, 0);
 
+const endAt = performance.now();
+
 console.log(`Answer: ${priority}`);
-console.log(`Solved in: ${performance.now() - startAt}ms`);
+console.log(`Solved in: ${endAt - startAt}ms`);
