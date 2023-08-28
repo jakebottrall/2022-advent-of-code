@@ -1,5 +1,4 @@
 import os
-import time
 
 from benchmark import benchmark
 
