@@ -1,5 +1,6 @@
 import os
-import time
+
+from benchmark import benchmark
 
 
 def get_file_path():
@@ -12,7 +13,6 @@ def calculate_total(elf: str):
 
 
 def main():
-    start_at = time.time()
     file_path = get_file_path()
 
     with open(file_path, "r") as file:
@@ -22,11 +22,8 @@ def main():
         top_three = sorted_calories[:3]
         top_three_total = sum(top_three)
 
-        end_at = time.time()
-
-        print(f"Answer: {top_three_total}")
-        print(f"Solved in: {(end_at - start_at) * 1000}ms")
+        return top_three_total
 
 
 if __name__ == "__main__":
-    main()
+    benchmark(main)
