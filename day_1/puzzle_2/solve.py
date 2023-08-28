@@ -3,16 +3,14 @@ import os
 from benchmark import benchmark
 
 
-def get_file_path():
-    directory = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(directory, "input.txt")
-
-
-def calculate_total(elf: str):
-    return sum(map(int, elf.splitlines()))
-
-
 def main():
+    def get_file_path():
+        directory = os.path.dirname(os.path.abspath(__file__))
+        return os.path.join(directory, "input.txt")
+
+    def calculate_total(elf: str):
+        return sum(map(int, elf.splitlines()))
+
     file_path = get_file_path()
 
     with open(file_path, "r") as file:
