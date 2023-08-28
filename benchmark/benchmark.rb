@@ -1,6 +1,3 @@
-# rubocop:disable Style/Documentation
-# rubocop:disable Metrics/AbcSize
-# rubocop:disable Metrics/MethodLength
 # frozen_string_literal: true
 
 module Benchmark
@@ -40,7 +37,3 @@ module Benchmark
     "#{format('%.5f', result)}ms"
   end
 end
-
-# rubocop:enable Style/Documentation
-# rubocop:enable Metrics/AbcSize
-# rubocop:enable Metrics/MethodLength
