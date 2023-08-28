@@ -34,10 +34,16 @@ Completed in:
 
 ### Day 2 - Puzzle 2
 
-Sure, here's the updated table with the results you provided:
-
 | lang       | answer | total         | average   | median    | p95       | p99       |
 | ---------- | ------ | ------------- | --------- | --------- | --------- | --------- |
 | typescript | 14184  | 1835.35443ms  | 0.18354ms | 0.16983ms | 0.24023ms | 0.36393ms |
 | ruby       | 14184  | 11548.93500ms | 1.15489ms | 1.15900ms | 1.28300ms | 1.47800ms |
 | python     | 14184  | 6363.07859ms  | 0.63631ms | 0.62013ms | 0.69880ms | 0.83208ms |
+
+### Day 3 - Puzzle 1
+
+| lang       | answer | total        | average   | median    | p95       | p99       |
+| ---------- | ------ | ------------ | --------- | --------- | --------- | --------- |
+| typescript | 7811   | 903.58781ms  | 0.09036ms | 0.08276ms | 0.12375ms | 0.22522ms |
+| ruby       | 7811   | 5692.99200ms | 0.56930ms | 0.53900ms | 0.69400ms | 0.82600ms |
+| python     | 7811   | 2402.94719ms | 0.24029ms | 0.23389ms | 0.27871ms | 0.32711ms |
