@@ -1,5 +1,6 @@
 import os
-import time
+
+from benchmark import benchmark
 from functools import reduce
 from typing import Dict, Literal, NamedTuple
 
@@ -44,19 +45,13 @@ def assess_game(sum: int, game: str):
 
 
 def main():
-    start_at = time.time()
     file_path = get_file_path()
 
     with open(file_path, "r") as file:
         games = file.read().splitlines()
-
         score = reduce(assess_game, games, 0)
-
-        end_at = time.time()
-
-        print(f"Answer: {score}")
-        print(f"Solved in: {(end_at - start_at) * 1000}ms")
+        return score
 
 
 if __name__ == "__main__":
-    main()
+    benchmark(main)

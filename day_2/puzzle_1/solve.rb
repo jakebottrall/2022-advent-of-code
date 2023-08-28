@@ -1,37 +1,37 @@
 # frozen_string_literal: true
 
-start_at      = Time.now
-file_path     = File.join(__dir__, 'input.txt')
+require_relative '../../benchmark/benchmark'
 
-PLAY_HASH = {
-  'A' => { choice: :rock, beats: :scissors, score: 1 },
-  'B' => { choice: :paper, beats: :rock, score: 2 },
-  'C' => { choice: :scissors, beats: :paper, score: 3 },
-  'X' => { choice: :rock, beats: :scissors, score: 1 },
-  'Y' => { choice: :paper, beats: :rock, score: 2 },
-  'Z' => { choice: :scissors, beats: :paper, score: 3 }
-}.freeze
+Benchmark.run do
+  file_path = File.join(__dir__, 'input.txt')
 
-File.open(file_path, 'r') do |file|
-  games = file.read.split("\n")
+  play_hash = {
+    'A' => { choice: :rock, beats: :scissors, score: 1 },
+    'B' => { choice: :paper, beats: :rock, score: 2 },
+    'C' => { choice: :scissors, beats: :paper, score: 3 },
+    'X' => { choice: :rock, beats: :scissors, score: 1 },
+    'Y' => { choice: :paper, beats: :rock, score: 2 },
+    'Z' => { choice: :scissors, beats: :paper, score: 3 }
+  }.freeze
 
-  score = games.inject(0) do |sum, game|
-    oppenent_play = PLAY_HASH[game[0]]
-    my_play       = PLAY_HASH[game[-1]]
+  File.open(file_path, 'r') do |file|
+    games = file.read.split("\n")
 
-    sum += my_play[:score]
+    score = games.inject(0) do |sum, game|
+      oppenent_play = play_hash[game[0]]
+      my_play       = play_hash[game[-1]]
 
-    if my_play[:choice] == oppenent_play[:choice]
-      sum += 3
-    elsif my_play[:beats] == oppenent_play[:choice]
-      sum += 6
+      sum += my_play[:score]
+
+      if my_play[:choice] == oppenent_play[:choice]
+        sum += 3
+      elsif my_play[:beats] == oppenent_play[:choice]
+        sum += 6
+      end
+
+      sum
     end
 
-    sum
+    score
   end
-
-  end_at = Time.now
-
-  puts("Answer: #{score}")
-  puts("Solved in: #{(end_at - start_at) * 1000}ms")
 end
