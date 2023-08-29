@@ -1,9 +1,9 @@
 const ITERATIONS = 10_000;
 
-export function benchmark(callback: () => number) {
+export function benchmark(callback: () => number | string) {
   const runTimes: number[] = [];
 
-  let answer = 0;
+  let answer: number | string = 0;
 
   for (let i = 0; i < ITERATIONS; i++) {
     const startAt = performance.now();

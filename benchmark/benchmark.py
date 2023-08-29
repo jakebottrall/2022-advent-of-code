@@ -1,14 +1,14 @@
 import math
 import time
-from typing import List
+from typing import Callable, List, Union
 
 ITERATIONS = 10000
 
 
-def benchmark(callback):
+def benchmark(callback: Callable[[], Union[str, int]]):
     run_times: List[str] = []
 
-    answer = 0
+    answer: Union[str, int] = 0
 
     for x in range(ITERATIONS):
         start_at = time.time()
