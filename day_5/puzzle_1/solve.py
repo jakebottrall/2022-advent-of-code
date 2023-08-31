@@ -1,7 +1,5 @@
-from functools import reduce
 import os
 import re
-from typing import List
 
 from benchmark import benchmark
 
