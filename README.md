@@ -71,3 +71,11 @@ Completed in:
 | typescript | 926    | 4894.34245ms  | 0.48943ms | 0.46961ms | 0.62458ms | 0.73057ms |
 | ruby       | 926    | 24462.92500ms | 2.44629ms | 2.42300ms | 2.66800ms | 3.07800ms |
 | python     | 926    | 14133.02708ms | 1.41330ms | 1.40309ms | 1.48797ms | 1.74785ms |
+
+### Day 5 - Puzzle 1
+
+| lang       | answer    | total         | average   | median    | p95       | p99       |
+| ---------- | --------- | ------------- | --------- | --------- | --------- | --------- |
+| typescript | TLNGFGMFN | 3618.30787ms  | 0.36183ms | 0.34529ms | 0.47073ms | 0.56531ms |
+| ruby       | TLNGFGMFN | 14346.60400ms | 1.43466ms | 1.41500ms | 1.67800ms | 1.87900ms |
+| python     | TLNGFGMFN | 9839.50448ms  | 0.98395ms | 0.96226ms | 1.06692ms | 1.21999ms |
