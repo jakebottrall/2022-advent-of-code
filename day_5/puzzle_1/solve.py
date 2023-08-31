@@ -42,7 +42,7 @@ def main():
                 crate = stack_grid[fromm - 1].pop()
                 stack_grid[to - 1].append(crate)
 
-        top_crates = reduce(lambda string, col: f"{string}{col[-1]}", stack_grid, "")
+        top_crates = "".join(col[-1] for col in stack_grid)
 
         return top_crates
 
