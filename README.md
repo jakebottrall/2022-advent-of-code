@@ -87,3 +87,11 @@ Completed in:
 | typescript | FGLQJCMBD | 4337.86180ms  | 0.43379ms | 0.41487ms | 0.56139ms | 0.64080ms |
 | ruby       | FGLQJCMBD | 12275.77700ms | 1.22758ms | 1.23300ms | 1.48500ms | 1.63300ms |
 | python     | FGLQJCMBD | 8212.15224ms  | 0.82122ms | 0.80299ms | 0.89121ms | 0.98109ms |
+
+### Day 6 - Puzzle 1
+
+| lang       | answer | total         | average   | median    | p95       | p99       |
+| ---------- | ------ | ------------- | --------- | --------- | --------- | --------- |
+| typescript | 1953   | 1417.69654ms  | 0.14177ms | 0.12460ms | 0.23034ms | 0.27900ms |
+| ruby       | 1953   | 19807.78400ms | 1.98078ms | 1.97800ms | 2.13300ms | 2.37600ms |
+| python     | 1953   | 7325.16837ms  | 0.73252ms | 0.71979ms | 0.78702ms | 0.90504ms |
