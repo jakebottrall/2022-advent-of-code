@@ -6,4 +6,6 @@ Completed in:
 - Ruby
 - Python
 
-## Results
+# Results
+
+See [here](./RESULTS.md) for compiled results.
