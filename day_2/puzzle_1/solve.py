@@ -1,15 +1,16 @@
 import os
-
-from benchmark import benchmark
+import sys
 from functools import reduce
 from typing import Dict, Literal, NamedTuple
 
+sys.path.append(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+)
+
+from benchmark.benchmark import benchmark
+
 
 def main():
-    def get_file_path():
-        directory = os.path.dirname(os.path.abspath(__file__))
-        return os.path.join(directory, "input.txt")
-
     PlayKey = Literal["A", "B", "C", "X", "Y", "Z"]
     PlayName = Literal["rock", "paper", "scissors"]
 
@@ -40,13 +41,11 @@ def main():
 
         return sum
 
-    file_path = get_file_path()
-
-    with open(file_path, "r") as file:
+    with open("./day_2/input.txt", "r") as file:
         games = file.read().splitlines()
         score = reduce(assess_game, games, 0)
         return score
 
 
 if __name__ == "__main__":
-    benchmark(main)
+    benchmark(main, "day_2_puzzle_1")

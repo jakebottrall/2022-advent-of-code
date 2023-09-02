@@ -1,17 +1,16 @@
 import os
-
-from benchmark import benchmark
 import re
+import sys
+
+sys.path.append(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+)
+
+from benchmark.benchmark import benchmark
 
 
 def main():
-    def get_file_path():
-        directory = os.path.dirname(os.path.abspath(__file__))
-        return os.path.join(directory, "input.txt")
-
-    file_path = get_file_path()
-
-    with open(file_path, "r") as file:
+    with open("./day_4/input.txt", "r") as file:
         pairs = file.read().splitlines()
 
         count = 0
@@ -28,4 +27,4 @@ def main():
 
 
 if __name__ == "__main__":
-    benchmark(main)
+    benchmark(main, "day_4_puzzle_1")

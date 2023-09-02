@@ -1,8 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.benchmark = void 0;
+const fs_1 = __importDefault(require("fs"));
 const ITERATIONS = 10_000;
-function benchmark(callback) {
+function benchmark(callback, key) {
     const runTimes = [];
     let answer = 0;
     for (let i = 0; i < ITERATIONS; i++) {
@@ -17,14 +21,16 @@ function benchmark(callback) {
     const median = runTimes[Math.floor(ITERATIONS / 2)];
     const p95 = runTimes[Math.floor(ITERATIONS * 0.95)];
     const p99 = runTimes[Math.floor(ITERATIONS * 0.99)];
-    console.log({
+    const results = {
         answer,
         total: parseResult(total),
         average: parseResult(average),
         median: parseResult(median),
         p95: parseResult(p95),
         p99: parseResult(p99),
-    });
+    };
+    console.log(results);
+    fs_1.default.writeFileSync(`./results/${key}_ts.json`, JSON.stringify(results));
 }
 exports.benchmark = benchmark;
 function parseResult(result) {

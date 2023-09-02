@@ -1,3 +1,4 @@
+import json
 import math
 import time
 from typing import Callable, List, Union
@@ -5,7 +6,7 @@ from typing import Callable, List, Union
 ITERATIONS = 10000
 
 
-def benchmark(callback: Callable[[], Union[str, int]]):
+def benchmark(callback: Callable[[], Union[str, int]], key: str):
     run_times: List[str] = []
 
     answer: Union[str, int] = 0
@@ -24,16 +25,19 @@ def benchmark(callback: Callable[[], Union[str, int]]):
     p95 = run_times[math.floor(ITERATIONS * 0.95)]
     p99 = run_times[math.floor(ITERATIONS * 0.99)]
 
-    print(
-        {
-            "answer": answer,
-            "total": parse_result(total),
-            "average": parse_result(average),
-            "median": parse_result(median),
-            "p95": parse_result(p95),
-            "p99": parse_result(p99),
-        }
-    )
+    results = {
+        "answer": answer,
+        "total": parse_result(total),
+        "average": parse_result(average),
+        "median": parse_result(median),
+        "p95": parse_result(p95),
+        "p99": parse_result(p99),
+    }
+
+    print(results)
+
+    with open(f"./results/{key}_py.json", "w") as file:
+        json.dump(results, file)
 
 
 def parse_result(result: int):

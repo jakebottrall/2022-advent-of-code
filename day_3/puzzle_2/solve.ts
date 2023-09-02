@@ -1,16 +1,13 @@
 import fs from "fs";
-import path from "path";
 import { benchmark } from "../../benchmark/benchmark";
 
 benchmark(() => {
-  const filePath = path.resolve(__dirname, "input.txt");
-
   function letterToPriority(letter: string) {
     const charCode = letter.charCodeAt(0);
     return charCode >= 97 ? charCode - 96 : charCode - 38;
   }
 
-  const file = fs.readFileSync(filePath, { encoding: "utf-8" });
+  const file = fs.readFileSync("./day_3/input.txt", { encoding: "utf-8" });
 
   const ruckSackGroups = file.split("\n").reduce((groups, ruckSack, i) => {
     if (i % 3 === 0) {
@@ -34,4 +31,4 @@ benchmark(() => {
   }, 0);
 
   return priority;
-});
+}, "day_3_puzzle_2");

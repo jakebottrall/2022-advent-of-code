@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require 'json'
+
 module Benchmark
   ITERATIONS = 10_000
 
-  def self.run
+  def self.run(key)
     run_times = []
 
     answer = 0
@@ -23,14 +25,20 @@ module Benchmark
     p95 = run_times[(ITERATIONS * 0.95).to_i]
     p99 = run_times[(ITERATIONS * 0.99).to_i]
 
-    puts({
-           answer: answer,
-           total: parse_result(total),
-           average: parse_result(average),
-           median: parse_result(median),
-           p95: parse_result(p95),
-           p99: parse_result(p99)
-         })
+    results = {
+      answer: answer,
+      total: parse_result(total),
+      average: parse_result(average),
+      median: parse_result(median),
+      p95: parse_result(p95),
+      p99: parse_result(p99)
+    }
+
+    puts(results)
+
+    File.open("./results/#{key}_rb.json", 'w') do |file|
+      file.write(JSON.generate(results))
+    end
   end
 
   def self.parse_result(result)

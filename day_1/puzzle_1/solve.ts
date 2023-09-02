@@ -1,11 +1,8 @@
 import fs from "fs";
-import path from "path";
 import { benchmark } from "../../benchmark/benchmark";
 
 benchmark(() => {
-  const filePath = path.resolve(__dirname, "input.txt");
-
-  const file = fs.readFileSync(filePath, { encoding: "utf-8" });
+  const file = fs.readFileSync("./day_1/input.txt", { encoding: "utf-8" });
 
   const elves = file.split("\n\n");
 
@@ -15,4 +12,4 @@ benchmark(() => {
     .at(0);
 
   return calories ?? -1;
-});
+}, "day_1_puzzle_1");

@@ -2,10 +2,8 @@
 
 require_relative '../../benchmark/benchmark'
 
-Benchmark.run do
-  file_path = File.join(__dir__, 'input.txt')
-
-  File.open(file_path, 'r') do |file|
+Benchmark.run('day_1_puzzle_1') do
+  File.open('./day_1/input.txt', 'r') do |file|
     elves = file.read.split("\n\n")
 
     calories = elves

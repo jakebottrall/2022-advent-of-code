@@ -1,6 +1,8 @@
+import fs from "fs";
+
 const ITERATIONS = 10_000;
 
-export function benchmark(callback: () => number | string) {
+export function benchmark(callback: () => number | string, key: string) {
   const runTimes: number[] = [];
 
   let answer: number | string = 0;
@@ -20,14 +22,18 @@ export function benchmark(callback: () => number | string) {
   const p95 = runTimes[Math.floor(ITERATIONS * 0.95)];
   const p99 = runTimes[Math.floor(ITERATIONS * 0.99)];
 
-  console.log({
+  const results = {
     answer,
     total: parseResult(total),
     average: parseResult(average),
     median: parseResult(median),
     p95: parseResult(p95),
     p99: parseResult(p99),
-  });
+  };
+
+  console.log(results);
+
+  fs.writeFileSync(`./results/${key}_ts.json`, JSON.stringify(results));
 }
 
 function parseResult(result: number) {

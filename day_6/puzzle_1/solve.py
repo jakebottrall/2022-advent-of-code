@@ -1,13 +1,16 @@
 import os
+import sys
 from typing import List
-from benchmark import benchmark
+
+sys.path.append(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+)
+
+from benchmark.benchmark import benchmark
 
 
 def main():
-    directory = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(directory, "input.txt")
-
-    with open(file_path, "r") as file:
+    with open("./day_6/input.txt", "r") as file:
         packet_stream = file.read()
 
         start_of_packet_marker = -1
@@ -29,4 +32,4 @@ def main():
 
 
 if __name__ == "__main__":
-    benchmark(main)
+    benchmark(main, "day_6_puzzle_1")

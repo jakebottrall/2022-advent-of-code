@@ -1,15 +1,16 @@
 import os
-
-from benchmark import benchmark
+import sys
 from functools import reduce
 from typing import List
 
+sys.path.append(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+)
+
+from benchmark.benchmark import benchmark
+
 
 def main():
-    def get_file_path():
-        directory = os.path.dirname(os.path.abspath(__file__))
-        return os.path.join(directory, "input.txt")
-
     def group_ruck_sacks(ruck_sacks: List[List[str]], size: int):
         return [ruck_sacks[i : i + size] for i in range(0, len(ruck_sacks), size)]
 
@@ -25,13 +26,11 @@ def main():
 
         return sum
 
-    file_path = get_file_path()
-
-    with open(file_path, "r") as file:
+    with open("./day_3/input.txt", "r") as file:
         ruck_sack_groups = group_ruck_sacks(file.read().splitlines(), 3)
         priority = reduce(assess_group, ruck_sack_groups, 0)
         return priority
 
 
 if __name__ == "__main__":
-    benchmark(main)
+    benchmark(main, "day_3_puzzle_2")

@@ -2,10 +2,8 @@
 
 require_relative '../../benchmark/benchmark'
 
-Benchmark.run do
-  file_path = File.join(__dir__, 'input.txt')
-
-  File.open(file_path, 'r') do |file|
+Benchmark.run('day_5_puzzle_1') do
+  File.open('./day_5/input.txt', 'r') do |file|
     stacks, instructions = file.read.split("\n\n")
 
     stack_lines = stacks.split("\n").reverse

@@ -1,10 +1,8 @@
 import fs from "fs";
-import path from "path";
 import { benchmark } from "../../benchmark/benchmark";
 
 benchmark(() => {
-  const filePath = path.resolve(__dirname, "input.txt");
-  const file = fs.readFileSync(filePath, { encoding: "utf-8" });
+  const file = fs.readFileSync("./day_4/input.txt", { encoding: "utf-8" });
 
   const pairs = file.split("\n");
 
@@ -21,4 +19,4 @@ benchmark(() => {
   }, 0);
 
   return count;
-});
+}, "day_4_puzzle_1");

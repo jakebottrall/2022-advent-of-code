@@ -2,15 +2,13 @@
 
 require_relative '../../benchmark/benchmark'
 
-Benchmark.run do
-  file_path = File.join(__dir__, 'input.txt')
-
+Benchmark.run('day_3_puzzle_2') do
   def letter_to_priority(letter)
     char_code = letter.ord
     char_code >= 97 ? char_code - 96 : char_code - 38
   end
 
-  File.open(file_path, 'r') do |file|
+  File.open('./day_3/input.txt', 'r') do |file|
     ruck_sack_groups = file.read.split("\n").each_with_index.each_with_object([]) do |(ruck_sack, i), groups|
       groups.push([]) if (i % 3).zero?
       groups.last.push(ruck_sack)

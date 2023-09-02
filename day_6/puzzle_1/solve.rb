@@ -2,10 +2,8 @@
 
 require_relative '../../benchmark/benchmark'
 
-Benchmark.run do
-  file_path = File.join(__dir__, 'input.txt')
-
-  File.open(file_path, 'r') do |file|
+Benchmark.run('day_6_puzzle_1') do
+  File.open('./day_6/input.txt', 'r') do |file|
     packet_stream = file.read
 
     start_of_packet_marker = -1

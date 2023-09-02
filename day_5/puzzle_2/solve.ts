@@ -1,10 +1,8 @@
 import fs from "fs";
-import path from "path";
 import { benchmark } from "../../benchmark/benchmark";
 
 benchmark(() => {
-  const filePath = path.resolve(__dirname, "input.txt");
-  const file = fs.readFileSync(filePath, { encoding: "utf-8" });
+  const file = fs.readFileSync("./day_5/input.txt", { encoding: "utf-8" });
 
   const [stacks, instructions] = file.split("\n\n");
 
@@ -33,7 +31,7 @@ benchmark(() => {
 
         return grid;
       },
-      [[], [], [], [], [], [], [], [], []] as string[][]
+      [[], [], [], [], [], [], [], [], []] as string[][],
     );
 
   instructions
@@ -44,7 +42,7 @@ benchmark(() => {
 
       const crates = stackGrid[from - 1].splice(
         stackGrid[from - 1].length - move,
-        move
+        move,
       );
 
       stackGrid[to - 1] = stackGrid[to - 1].concat(crates);
@@ -52,8 +50,8 @@ benchmark(() => {
 
   const topCrates = stackGrid.reduce(
     (string, col) => `${string}${col.at(-1)}`,
-    ""
+    "",
   );
 
   return topCrates;
-});
+}, "day_5_puzzle_2");

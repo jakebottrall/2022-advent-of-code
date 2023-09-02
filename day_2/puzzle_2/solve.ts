@@ -1,10 +1,7 @@
 import fs from "fs";
-import path from "path";
 import { benchmark } from "../../benchmark/benchmark";
 
 benchmark(() => {
-  const filePath = path.resolve(__dirname, "input.txt");
-
   type ScoreKey = "A" | "B" | "C";
   type ResultKey = "X" | "Y" | "Z";
 
@@ -14,7 +11,7 @@ benchmark(() => {
     ["C", 3],
   ]);
 
-  const file = fs.readFileSync(filePath, { encoding: "utf-8" });
+  const file = fs.readFileSync("./day_2/input.txt", { encoding: "utf-8" });
 
   const games = file.split("\n");
 
@@ -45,4 +42,4 @@ benchmark(() => {
   }, 0);
 
   return score;
-});
+}, "day_2_puzzle_2");

@@ -2,16 +2,14 @@
 
 require_relative '../../benchmark/benchmark'
 
-Benchmark.run do
-  file_path = File.join(__dir__, 'input.txt')
-
+Benchmark.run('day_2_puzzle_2') do
   score_hash = {
     'A' => 1,
     'B' => 2,
     'C' => 3
   }.freeze
 
-  File.open(file_path, 'r') do |file|
+  File.open('./day_2/input.txt', 'r') do |file|
     games = file.read.split("\n")
 
     score = games.inject(0) do |sum, game|

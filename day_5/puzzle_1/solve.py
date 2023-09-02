@@ -1,14 +1,16 @@
 import os
 import re
+import sys
 
-from benchmark import benchmark
+sys.path.append(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+)
+
+from benchmark.benchmark import benchmark
 
 
 def main():
-    directory = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(directory, "input.txt")
-
-    with open(file_path, "r") as file:
+    with open("./day_5/input.txt", "r") as file:
         stacks, instructions = file.read().split("\n\n")
 
         stack_lines = reversed(stacks.splitlines())
@@ -46,4 +48,4 @@ def main():
 
 
 if __name__ == "__main__":
-    benchmark(main)
+    benchmark(main, "day_5_puzzle_1")

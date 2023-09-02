@@ -2,10 +2,8 @@
 
 require_relative '../../benchmark/benchmark'
 
-Benchmark.run do
-  file_path = File.join(__dir__, 'input.txt')
-
-  File.open(file_path, 'r') do |file|
+Benchmark.run('day_4_puzzle_2') do
+  File.open('./day_4/input.txt', 'r') do |file|
     pairs = file.read.split("\n")
 
     count = pairs.count do |pair|
