@@ -50,14 +50,17 @@ def main():
             elif command.startswith("ls"):
                 handle_ls(output)
 
-        total_size = 0
+        root_dir_size = directories.get("/")
+        required_space = 30_000_000 - (70_000_000 - root_dir_size)
+
+        directory_to_be_removed_size = root_dir_size
 
         for size in directories.values():
-            if size <= 100000:
-                total_size += size
+            if size > required_space and size < directory_to_be_removed_size:
+                directory_to_be_removed_size = size
 
-        return total_size
+        return directory_to_be_removed_size
 
 
 if __name__ == "__main__":
-    benchmark(main, "day_7_puzzle_1")
+    benchmark(main, "day_7_puzzle_2")
