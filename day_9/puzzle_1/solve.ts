@@ -4,8 +4,10 @@ import { benchmark } from "../../benchmark/benchmark";
 benchmark(() => {
   const file = fs.readFileSync("./day_9/input.txt", { encoding: "utf-8" });
 
-  let headPosition = [0, 0];
-  let tailPosition = [0, 0];
+  type Positition = [number, number];
+
+  let headPosition: Positition = [0, 0];
+  let tailPosition: Positition = [0, 0];
 
   const tailPositionHistory = new Set([0]);
 
@@ -15,31 +17,32 @@ benchmark(() => {
     return ((X + Y) * (X + Y + 1)) / 2 + Y;
   }
 
+  type Direction = "L" | "U" | "R" | "D";
+
+  const directionMapping: Record<Direction, [number, number]> = {
+    L: [-1, 0],
+    U: [0, 1],
+    R: [1, 0],
+    D: [0, -1],
+  };
+
   file.split("\n").forEach((instruction) => {
-    const [direction, steps] = instruction.split(" ");
+    const [direction, steps] = instruction.split(" ") as [Direction, string];
+
+    const [dx, dy] = directionMapping[direction];
 
     for (let i = 0; i < +steps; i++) {
-      const prevHeadPosition = [...headPosition];
+      const prevHeadPosition: Positition = [...headPosition];
+
+      headPosition[0] += dx;
+      headPosition[1] += dy;
 
       let shouldMove = false;
 
-      switch (direction) {
-        case "L":
-          headPosition[0] -= 1;
-          shouldMove = tailPosition[0] - headPosition[0] > 1;
-          break;
-        case "U":
-          headPosition[1] += 1;
-          shouldMove = headPosition[1] - tailPosition[1] > 1;
-          break;
-        case "R":
-          headPosition[0] += 1;
-          shouldMove = headPosition[0] - tailPosition[0] > 1;
-          break;
-        case "D":
-          headPosition[1] -= 1;
-          shouldMove = tailPosition[1] - headPosition[1] > 1;
-          break;
+      if (direction === "L" || direction === "R") {
+        shouldMove = Math.abs(tailPosition[0] - headPosition[0]) > 1;
+      } else if (direction === "U" || direction === "D") {
+        shouldMove = Math.abs(headPosition[1] - tailPosition[1]) > 1;
       }
 
       if (shouldMove) {

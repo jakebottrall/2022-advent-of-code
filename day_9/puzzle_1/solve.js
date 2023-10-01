@@ -15,28 +15,25 @@ const benchmark_1 = require("../../benchmark/benchmark");
         const Y = y >= 0 ? 2 * y : -2 * y - 1;
         return ((X + Y) * (X + Y + 1)) / 2 + Y;
     }
+    const directionMapping = {
+        L: [-1, 0],
+        U: [0, 1],
+        R: [1, 0],
+        D: [0, -1],
+    };
     file.split("\n").forEach((instruction) => {
         const [direction, steps] = instruction.split(" ");
+        const [dx, dy] = directionMapping[direction];
         for (let i = 0; i < +steps; i++) {
             const prevHeadPosition = [...headPosition];
+            headPosition[0] += dx;
+            headPosition[1] += dy;
             let shouldMove = false;
-            switch (direction) {
-                case "L":
-                    headPosition[0] -= 1;
-                    shouldMove = tailPosition[0] - headPosition[0] > 1;
-                    break;
-                case "U":
-                    headPosition[1] += 1;
-                    shouldMove = headPosition[1] - tailPosition[1] > 1;
-                    break;
-                case "R":
-                    headPosition[0] += 1;
-                    shouldMove = headPosition[0] - tailPosition[0] > 1;
-                    break;
-                case "D":
-                    headPosition[1] -= 1;
-                    shouldMove = tailPosition[1] - headPosition[1] > 1;
-                    break;
+            if (direction === "L" || direction === "R") {
+                shouldMove = Math.abs(tailPosition[0] - headPosition[0]) > 1;
+            }
+            else if (direction === "U" || direction === "D") {
+                shouldMove = Math.abs(headPosition[1] - tailPosition[1]) > 1;
             }
             if (shouldMove) {
                 tailPosition = prevHeadPosition;

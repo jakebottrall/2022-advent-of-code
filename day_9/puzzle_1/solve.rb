@@ -15,27 +15,30 @@ Benchmark.run('day_9_puzzle_1') do
       ((x_adj + y_adj) * (x_adj + y_adj + 1)) / 2 + y_adj
     end
 
-    file.read.split("\n").each do |instruction|
+    direction_mapping = {
+      'L' => [-1, 0],
+      'U' => [0, 1],
+      'R' => [1, 0],
+      'D' => [0, -1]
+    }
+
+    file.each_line do |instruction|
       direction, steps = instruction.split(' ')
+
+      dx, dy = direction_mapping[direction]
 
       steps.to_i.times do
         prev_head_position = head_position.dup
 
+        head_position[0] += dx
+        head_position[1] += dy
+
         should_move = false
 
-        case direction
-        when 'L'
-          head_position[0] -= 1
-          should_move = tail_position[0] - head_position[0] > 1
-        when 'U'
-          head_position[1] += 1
-          should_move = head_position[1] - tail_position[1] > 1
-        when 'R'
-          head_position[0] += 1
-          should_move = head_position[0] - tail_position[0] > 1
-        when 'D'
-          head_position[1] -= 1
-          should_move = tail_position[1] - head_position[1] > 1
+        if %w[L R].include?(direction)
+          should_move = (tail_position[0] - head_position[0]).abs > 1
+        elsif %w[U D].include?(direction)
+          should_move = (tail_position[1] - head_position[1]).abs > 1
         end
 
         if should_move
