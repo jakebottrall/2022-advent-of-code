@@ -1,5 +1,9 @@
 import fs from "fs";
+import { exec } from "node:child_process";
 import path from "path";
+import util from "util";
+
+const asyncExec = util.promisify(exec);
 
 const directoryPath = "./results";
 
@@ -80,4 +84,5 @@ fs.readdir(directoryPath, (err, files) => {
   const markdownContent = markdownTables.join("\n\n");
 
   fs.writeFileSync(`./RESULTS.md`, markdownContent);
+  asyncExec("pnpm prettier --write RESULTS.md");
 });

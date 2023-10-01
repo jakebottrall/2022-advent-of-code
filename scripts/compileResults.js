@@ -4,7 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
+const node_child_process_1 = require("node:child_process");
 const path_1 = __importDefault(require("path"));
+const util_1 = __importDefault(require("util"));
+const asyncExec = util_1.default.promisify(node_child_process_1.exec);
 const directoryPath = "./results";
 fs_1.default.readdir(directoryPath, (err, files) => {
     if (err) {
@@ -54,4 +57,5 @@ fs_1.default.readdir(directoryPath, (err, files) => {
     });
     const markdownContent = markdownTables.join("\n\n");
     fs_1.default.writeFileSync(`./RESULTS.md`, markdownContent);
+    asyncExec("pnpm prettier --write RESULTS.md");
 });

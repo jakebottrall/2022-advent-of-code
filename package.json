@@ -5,7 +5,8 @@
   "author": "Jake Bottrall",
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "compileResults": "node ./scripts/compileResults.js"
   },
   "devDependencies": {
     "@types/node": "^20.5.6",
