@@ -2,7 +2,7 @@
 
 require_relative '../../benchmark/benchmark'
 
-Benchmark.run('day_10_puzzle_1') do
+Benchmark.run('day_10_puzzle_2') do
   File.open('./day_10/input.txt', 'r') do |file|
     x = 1
     cycle_count = 0

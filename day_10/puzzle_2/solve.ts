@@ -31,4 +31,4 @@ benchmark(() => {
   });
 
   return `\n${crt.join("\n")}`;
-}, "day_10_puzzle_1");
+}, "day_10_puzzle_2");

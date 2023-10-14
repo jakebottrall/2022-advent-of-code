@@ -38,4 +38,4 @@ def main():
 
 
 if __name__ == "__main__":
-    benchmark(main, "day_10_puzzle_1")
+    benchmark(main, "day_10_puzzle_2")
