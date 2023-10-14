@@ -48,9 +48,7 @@ fs_1.default.readdir(directoryPath, (err, files) => {
         const [aKey] = a;
         const [bKey] = b;
         const aDay = +aKey.split(" ")[1];
-        console.log("🚀 ~ aDay:", aDay);
         const bDay = +bKey.split(" ")[1];
-        console.log("🚀 ~ bDay:", bDay);
         if (aDay < bDay) {
             return -1;
         }
