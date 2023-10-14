@@ -43,7 +43,31 @@ fs_1.default.readdir(directoryPath, (err, files) => {
         }
     });
     const markdownTables = ["# Results\n"];
-    resultsMap.forEach((results, key) => {
+    [...resultsMap]
+        .sort((a, b) => {
+        const [aKey] = a;
+        const [bKey] = b;
+        const aDay = +aKey.split(" ")[1];
+        console.log("🚀 ~ aDay:", aDay);
+        const bDay = +bKey.split(" ")[1];
+        console.log("🚀 ~ bDay:", bDay);
+        if (aDay < bDay) {
+            return -1;
+        }
+        if (aDay > bDay) {
+            return 1;
+        }
+        const aPuzzle = +aKey.split(" ")[3];
+        const bPuzzle = +bKey.split(" ")[3];
+        if (aPuzzle < bPuzzle) {
+            return -1;
+        }
+        if (aPuzzle > bPuzzle) {
+            return 1;
+        }
+        return 0;
+    })
+        .forEach(([key, results]) => {
         const tableHeader = "| Language | Answer | Total | Average | Median | P95 | P99 |";
         const tableDivider = "| ------ | ------ | ------ | ------- | ------ | --- | --- |";
         const tableRows = results.map((result) => `| ${result.language} | ${result.answer} | ${result.total} | ${result.average} | ${result.median} | ${result.p95} | ${result.p99} |`);

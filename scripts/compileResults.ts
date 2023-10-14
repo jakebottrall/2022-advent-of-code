@@ -59,27 +59,56 @@ fs.readdir(directoryPath, (err, files) => {
 
   const markdownTables = ["# Results\n"];
 
-  resultsMap.forEach((results, key) => {
-    const tableHeader =
-      "| Language | Answer | Total | Average | Median | P95 | P99 |";
+  [...resultsMap]
+    .sort((a, b) => {
+      const [aKey] = a;
+      const [bKey] = b;
 
-    const tableDivider =
-      "| ------ | ------ | ------ | ------- | ------ | --- | --- |";
+      const aDay = +aKey.split(" ")[1];
+      const bDay = +bKey.split(" ")[1];
 
-    const tableRows = results.map(
-      (result) =>
-        `| ${result.language} | ${result.answer} | ${result.total} | ${result.average} | ${result.median} | ${result.p95} | ${result.p99} |`,
-    );
+      if (aDay < bDay) {
+        return -1;
+      }
 
-    const markdownTable = [
-      `## ${key}`,
-      tableHeader,
-      tableDivider,
-      ...tableRows,
-    ].join("\n");
+      if (aDay > bDay) {
+        return 1;
+      }
 
-    markdownTables.push(markdownTable);
-  });
+      const aPuzzle = +aKey.split(" ")[3];
+      const bPuzzle = +bKey.split(" ")[3];
+
+      if (aPuzzle < bPuzzle) {
+        return -1;
+      }
+
+      if (aPuzzle > bPuzzle) {
+        return 1;
+      }
+
+      return 0;
+    })
+    .forEach(([key, results]) => {
+      const tableHeader =
+        "| Language | Answer | Total | Average | Median | P95 | P99 |";
+
+      const tableDivider =
+        "| ------ | ------ | ------ | ------- | ------ | --- | --- |";
+
+      const tableRows = results.map(
+        (result) =>
+          `| ${result.language} | ${result.answer} | ${result.total} | ${result.average} | ${result.median} | ${result.p95} | ${result.p99} |`,
+      );
+
+      const markdownTable = [
+        `## ${key}`,
+        tableHeader,
+        tableDivider,
+        ...tableRows,
+      ].join("\n");
+
+      markdownTables.push(markdownTable);
+    });
 
   const markdownContent = markdownTables.join("\n\n");
 
